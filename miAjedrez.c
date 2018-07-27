@@ -2,19 +2,20 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-const uint8_t TableroLineaTamanio = 8;
-const uint8_t PeonesNumero = 8;
-const uint8_t TorresNumero = 2;
-const uint8_t CaballosNumero = 2;
-const uint8_t AlfilesNumero = 2;
-const uint8_t DamaNumero = 1;
-const uint8_t ReyNumero = 1;
+//Tamanios no variables del juego
+#define TABLERO_LINEA_TAMANIO 8
+#define PEONES_NUMERO 8
+#define TORRES_NUMERO 2
+#define CABALLOS_NUMERO 2
+#define ALFILES_NUMERO 2
+#define DAMA_NUMERO 1
+#define REY_NUMERO 1
 
 enum COLOR {BLANCO,NEGRO};
 
 typedef struct TableroEstructura{
-    uint8_t VerticalTablero[8];
-    uint8_t HorizontalTablero[8];
+    uint8_t VerticalTablero[TABLERO_LINEA_TAMANIO];
+    uint8_t HorizontalTablero[TABLERO_LINEA_TAMANIO];
 }TableroEstructura;
 
 typedef struct PeonEstructura{
@@ -63,7 +64,7 @@ TableroEstructura* TableroInicializador(void)
     if(Tablero)
     {
         //Inicializar los valores de las lineas para identificar las casillas
-        for(uint_fast8_t i = 0; i<TableroLineaTamanio; i++)
+        for(uint_fast8_t i = 0; i<TABLERO_LINEA_TAMANIO; i++)
         {
             Tablero->VerticalTablero[i] = i+1;
             Tablero->HorizontalTablero[i] = i+97;
@@ -78,12 +79,12 @@ TableroEstructura* TableroInicializador(void)
 PeonEstructura** PeonesInicializador(uint8_t colorSeleccionado)
 {
     //Alojar un apuntador de apuntadores de estructuras
-    PeonEstructura **Peones = calloc(sizeof(PeonEstructura*), PeonesNumero);
+    PeonEstructura **Peones = calloc(sizeof(PeonEstructura*), PEONES_NUMERO);
 
     if(Peones)
     {
         //Alojar cada peon inidividualmente
-        for(uint8_t i = 0; i<PeonesNumero ; i++)
+        for(uint8_t i = 0; i<PEONES_NUMERO ; i++)
         {
             Peones[i] = calloc(sizeof(PeonEstructura),1);
             if(Peones[i])
@@ -113,12 +114,12 @@ PeonEstructura** PeonesInicializador(uint8_t colorSeleccionado)
 TorreEstructura** TorresInicializador(uint8_t colorSeleccionado)
 {
     //Alojar un apuntador de apuntadores de estructuras
-    TorreEstructura **Torres = calloc(sizeof(TorreEstructura*), TorresNumero);
+    TorreEstructura **Torres = calloc(sizeof(TorreEstructura*), TORRES_NUMERO);
 
     if(Torres)
     {
         //Alojar cada peon inidividualmente
-        for(uint8_t i = 0; i<TorresNumero ; i++)
+        for(uint8_t i = 0; i<TORRES_NUMERO ; i++)
         {
             Torres[i] = calloc(sizeof(TorreEstructura),1);
             if(Torres[i])
@@ -148,12 +149,12 @@ TorreEstructura** TorresInicializador(uint8_t colorSeleccionado)
 CaballoEstructura** CaballosInicializador(uint8_t colorSeleccionado)
 {
     //Alojar un apuntador de apuntadores de estructuras
-    CaballoEstructura **Caballos = calloc(sizeof(CaballoEstructura*), CaballosNumero);
+    CaballoEstructura **Caballos = calloc(sizeof(CaballoEstructura*), CABALLOS_NUMERO);
 
     if(Caballos)
     {
         //Alojar cada peon inidividualmente
-        for(uint8_t i = 0; i<CaballosNumero ; i++)
+        for(uint8_t i = 0; i<CABALLOS_NUMERO ; i++)
         {
             Caballos[i] = calloc(sizeof(CaballoEstructura),1);
             if(Caballos[i])
@@ -182,12 +183,12 @@ CaballoEstructura** CaballosInicializador(uint8_t colorSeleccionado)
 AlfilEstructura** AlfilesInicializador(uint8_t colorSeleccionado)
 {
     //Alojar un apuntador de apuntadores de estructuras
-    AlfilEstructura **Alfiles = calloc(sizeof(AlfilEstructura*), AlfilesNumero);
+    AlfilEstructura **Alfiles = calloc(sizeof(AlfilEstructura*), ALFILES_NUMERO);
 
     if(Alfiles)
     {
         //Alojar cada peon inidividualmente
-        for(uint8_t i = 0; i<AlfilesNumero ; i++)
+        for(uint8_t i = 0; i<ALFILES_NUMERO ; i++)
         {
             Alfiles[i] = calloc(sizeof(AlfilEstructura),1);
             if(Alfiles[i])
@@ -216,12 +217,12 @@ AlfilEstructura** AlfilesInicializador(uint8_t colorSeleccionado)
 DamaEstructura** DamaInicializador(uint8_t colorSeleccionado)
 {
     //Alojar un apuntador de apuntadores de estructuras
-    DamaEstructura **Dama = calloc(sizeof(AlfilEstructura*), DamaNumero);
+    DamaEstructura **Dama = calloc(sizeof(AlfilEstructura*), DAMA_NUMERO);
 
     if(Dama)
     {
         //Alojar cada Dama inidividualmente
-        for(uint8_t i = 0; i<DamaNumero ; i++)
+        for(uint8_t i = 0; i<DAMA_NUMERO ; i++)
         {
             Dama[i] = calloc(sizeof(DamaEstructura),1);
             if(Dama[i])
@@ -251,8 +252,8 @@ int main ()
 {
     TableroEstructura *Tablero = TableroInicializador();
 
-    for (int i = 0; i <TableroLineaTamanio; i++)
-        for (int j = 0; j <TableroLineaTamanio; j++)
+    for (int i = 0; i <TABLERO_LINEA_TAMANIO; i++)
+        for (int j = 0; j <TABLERO_LINEA_TAMANIO; j++)
             ;//printf("%c%d ",Tablero->HorizontalTablero[i],Tablero->VerticalTablero[j]);
 
     //Se crean las piezas de los perones blancos y negros
