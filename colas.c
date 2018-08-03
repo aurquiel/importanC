@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef struct tNodo{
     int value;
     struct tNodo* siguiente;
